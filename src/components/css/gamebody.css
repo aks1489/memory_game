@@ -1,0 +1,11 @@
+.game_body{
+    height: 100vh;
+}
+
+.emoji_holder{
+    list-style: none;
+}
+
+.emo{
+    font-size: 4.5rem;
+}
