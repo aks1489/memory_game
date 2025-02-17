@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './css/gamebody.css'
 import GameCard from "./GameCard";
 import Wrapper from './Wrapper';
-import {gameOnOff, Ie, EmoData } from '../Interface';
+import {gameOnOff, Ie, EmoData, IRandomNumber } from '../Interface';
 
 export default function GameBody() {
 
@@ -17,7 +17,8 @@ export default function GameBody() {
                 throw new Error("Could not fetch data from API")
             }
             const data = await response.json()
-            const shortedEmojies = data.slice(0,5)
+            const shortedEmojies = getSliceData(data)
+
             setEmojiData(shortedEmojies)
 
             setGameOn(true)
@@ -29,7 +30,28 @@ export default function GameBody() {
         e.preventDefault()
     }
 
-    console.log(emojiData)
+    //setting random emoji data
+    function getSliceData(data: []) {
+        const randomElement: IRandomNumber = getRandomNumberArray(data)
+        const dataShort = randomElement.map( ele => data[ele])
+        return dataShort
+    }
+
+
+    // creating random 5 array element numbers
+    function getRandomNumberArray(data: IRandomNumber) {
+        const randomArray: IRandomNumber = [];
+        for(let i = 0; i <= 4; i++) {
+            const randomNum = Math.floor(Math.random() * data.length)
+            if(!randomArray.includes(randomNum)){
+                randomArray.push(randomNum);
+            } else {
+                i--
+            }
+        }
+        return randomArray;
+    }
+
     function clickView() {
         console.log("Emoji Clicked")
     }
