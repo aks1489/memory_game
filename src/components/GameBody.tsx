@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './css/gamebody.css'
 import GameCard from "./GameCard";
 import Wrapper from './Wrapper';
-import { gameOnOff, Ie } from '../Interface';
+import {gameOnOff, Ie, EmoData } from '../Interface';
 
 export default function GameBody() {
 
     const [gameOn, setGameOn] = useState<gameOnOff>(false)
-    const [emojiData, setEmojiData] = useState([])
-    
+    const [emojiData, setEmojiData] = useState<EmoData[]>([])
+       
     async function triggerGameStatus(e: Ie) {
 
         try {
@@ -37,7 +37,7 @@ export default function GameBody() {
     return(
         <div className="game_body m-0 bg-info-subtle d-flex flex-column align-items-center justify-content-center p-1">
             <h1 className="m-3 p-2 border-2 rounded text-white bg-success">Memory Game</h1>
-            {gameOn && <GameCard handelemojiClick={clickView}/>}
+            {gameOn && <GameCard handelemojiClick={clickView} emojiData={emojiData} />}
             {!gameOn && <Wrapper handleSubmit={triggerGameStatus}/>}
         </div>
     )
