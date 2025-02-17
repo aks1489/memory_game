@@ -1,7 +1,16 @@
 import { BaseSyntheticEvent, MouseEventHandler } from "react";
 
+export interface EmoData {
+    category: string,
+    group: string,
+    htmlCode: string[],
+    name: string,
+    unicode: string[]
+}
+
 export interface GameCardProps {
-    handelemojiClick: MouseEventHandler
+    handelemojiClick: MouseEventHandler,
+    emojiData: EmoData[]
 }
 
 export interface GameWrapperButton {
