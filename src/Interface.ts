@@ -8,6 +8,7 @@ export interface EmoData {
     unicode: string[]
 }
 
+export type IRandomNumber = number[]
 export interface GameCardProps {
     handelemojiClick: MouseEventHandler,
     emojiData: EmoData[]
