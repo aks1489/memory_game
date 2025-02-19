@@ -8,6 +8,8 @@ export default function GameBody() {
 
     const [gameOn, setGameOn] = useState<gameOnOff>(false)
     const [emojiData, setEmojiData] = useState<EmoData[]>([])
+    // const [selectedCards, setSelectedCards] = useState([])
+    // const [matchedCards, setMatchedCards] = useState([])
        
     async function triggerGameStatus(e: Ie) {
 
@@ -18,8 +20,9 @@ export default function GameBody() {
             }
             const data = await response.json()
             const shortedEmojies = getSliceData(data)
+            const shuffeldEmojies = emojiArray(shortedEmojies)
 
-            setEmojiData(shortedEmojies)
+            setEmojiData(shuffeldEmojies)
 
             setGameOn(true)
 
@@ -28,6 +31,20 @@ export default function GameBody() {
         }
         
         e.preventDefault()
+    }
+
+    //Shuffling The emoji array using **Fisher-Yates algorithm
+    function emojiArray(data: any) {
+        const Emoji = [...data, ...data]
+
+        for (let i = Emoji.length - 1; i>0 ; i--){
+            const j = Math.floor(Math.random() * (i + 1))
+            const t = Emoji[i]
+            Emoji[i] = Emoji[j]
+            Emoji[j] = t
+        }
+
+        return Emoji
     }
 
     //setting random emoji data

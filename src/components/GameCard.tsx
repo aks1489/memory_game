@@ -3,13 +3,15 @@ import { decodeEntity } from 'html-entities'
 export default function GameCard({emojiData, handelemojiClick}: GameCardProps) {
 
     const handleEmoji = emojiData.map((emo, index) => {
-        return <li 
+        return (
+                <li 
                     key={index} 
                     className="emoji_holder col-auto p-1 d-flex justify-content-center align-items-center">
                         <button type="button" onClick={handelemojiClick} className="btn btn-light border-3 emo">
                             {decodeEntity(emo.htmlCode[0])}
                         </button>
                 </li>
+                )
     })
     // console.log(props)
 

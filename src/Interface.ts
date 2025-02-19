@@ -11,7 +11,7 @@ export interface EmoData {
 export type IRandomNumber = number[]
 export interface GameCardProps {
     handelemojiClick: MouseEventHandler,
-    emojiData: EmoData[]
+    emojiData: EmoData[],
 }
 
 export interface GameWrapperButton {
