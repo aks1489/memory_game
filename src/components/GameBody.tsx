@@ -18,7 +18,14 @@ export default function GameBody() {
         }
     },[selectedCards])
 
-  
+    useEffect(() => {
+        if(emojiData.length && matchedCards.length === emojiData.length) {
+            setIsGameOver(true)
+        }
+    },[matchedCards])
+
+    console.log(matchedCards)
+    console.log(isGameOver)
 
     async function triggerGameStatus(e: Ie) {
 
