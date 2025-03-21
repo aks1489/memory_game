@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './css/gamebody.css'
 import GameCard from "./GameCard";
 import Wrapper from './Wrapper';
-import {gameOnOff, Ie, EmoData, IRandomNumber } from '../Interface';
+import {gameOnOff, Ie, EmoData, IRandomNumber, ISelectedCards, } from '../Interface';
 
 export default function GameBody() {
 
     const [gameOn, setGameOn] = useState<gameOnOff>(false)
     const [emojiData, setEmojiData] = useState<EmoData[]>([])
-    // const [selectedCards, setSelectedCards] = useState([])
+    const [selectedCards, setSelectedCards] = useState<ISelectedCards >([])
     // const [matchedCards, setMatchedCards] = useState([])
        
     async function triggerGameStatus(e: Ie) {
@@ -69,14 +69,19 @@ export default function GameBody() {
         return randomArray;
     }
 
-    function clickView() {
-        console.log("Emoji Clicked")
+    function clickView(name: string,index :number) {
+        setSelectedCards(
+            [{
+                name,
+                index
+            }]
+        )
     }
     
     return(
         <div className="game_body m-0 bg-info-subtle d-flex flex-column align-items-center justify-content-center p-1">
             <h1 className="m-3 p-2 border-2 rounded text-white bg-success">Memory Game</h1>
-            {gameOn && <GameCard handelemojiClick={clickView} emojiData={emojiData} />}
+            {gameOn && <GameCard handelEmojiClick={clickView} emojiData={emojiData} />}
             {!gameOn && <Wrapper handleSubmit={triggerGameStatus}/>}
         </div>
     )
