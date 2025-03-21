@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './css/gamebody.css'
 import GameCard from "./GameCard";
 import Wrapper from './Wrapper';
@@ -9,8 +9,17 @@ export default function GameBody() {
     const [gameOn, setGameOn] = useState<gameOnOff>(false)
     const [emojiData, setEmojiData] = useState<EmoData[]>([])
     const [selectedCards, setSelectedCards] = useState<ISelectedCards >([])
-    // const [matchedCards, setMatchedCards] = useState([])
-       
+    const [matchedCards, setMatchedCards] = useState<ISelectedCards>([])
+    const [isGameOver, setIsGameOver] = useState<boolean>(false)
+      
+    useEffect(() => {
+        if(selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
+            setMatchedCards(prvMatchedCards => [...prvMatchedCards,...selectedCards])
+        }
+    },[selectedCards])
+
+  
+
     async function triggerGameStatus(e: Ie) {
 
         try {
@@ -70,12 +79,14 @@ export default function GameBody() {
     }
 
     function clickView(name: string,index :number) {
-        setSelectedCards(
-            [{
-                name,
-                index
-            }]
-        )
+        // setSelectedCards([{name,index}])
+        const selectedCardEntry = selectedCards.find(emoji => emoji.index === index)
+
+        if(!selectedCardEntry && selectedCards.length < 2) {
+            setSelectedCards(prvSelectedCards => [...prvSelectedCards, {name,index}])
+        } else if(!selectedCardEntry && selectedCards.length === 2){
+            setSelectedCards([{name,index}])
+        }
     }
     
     return(
