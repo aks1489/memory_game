@@ -10,10 +10,9 @@ export interface EmoData {
 
 export type IRandomNumber = number[]
 export interface GameCardProps {
-    handelemojiClick: MouseEventHandler,
+    handelEmojiClick: (name: string, index: number) => void,
     emojiData: EmoData[],
 }
-
 export interface GameWrapperButton {
     children: string,
     handleClick: MouseEventHandler
@@ -21,6 +20,13 @@ export interface GameWrapperButton {
 export interface GameWrapper {
     handleSubmit: MouseEventHandler
 }
+
+export interface ISelectedCard {
+    name: string;
+    index: number;
+}
+
+export type ISelectedCards = ISelectedCard[];
 
 export type gameOnOff = boolean
 
