@@ -1,9 +1,11 @@
-import { decodeEntity } from 'html-entities'
-export default function EmojiButton({content, index, style, handelClick}: any) {
-    
+export default function EmojiButton({content, handleClick, style, selectedCard, matchedCard}: any) {
+    const buttonContent = selectedCard || matchedCard ? content : "❓"
     return(
-        <button type="button" onClick={() => handelClick(content.name,index)} className={style}>
-            {decodeEntity(content.htmlCode[0])}
+        <button 
+            type="button"
+            onClick={handleClick}
+            className={style}>
+                {buttonContent}
         </button>
     )
 }

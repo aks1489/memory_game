@@ -25,7 +25,7 @@ export default function GameBody() {
     },[matchedCards])
 
     console.log(matchedCards)
-    console.log(isGameOver)
+    console.log(selectedCards)
 
     async function triggerGameStatus(e: Ie) {
 
@@ -94,6 +94,7 @@ export default function GameBody() {
         } else if(!selectedCardEntry && selectedCards.length === 2){
             setSelectedCards([{name,index}])
         }
+        console.log(selectedCards)
     }
     
     return(
