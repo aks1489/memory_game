@@ -13,8 +13,7 @@ export default function GameCard({emojiData, handelEmojiClick, selectedCards, ma
                     className="emoji_holder col-auto p-1 d-flex justify-content-center align-items-center">
                         <EmojiButton 
                             content={decodeEntity(emo.htmlCode[0])} 
-                            index={index} 
-                            style={"btn btn-light border-3 emo"} 
+                            index={index}
                             selectedCard={selectedCardEntry} 
                             matchedCard={matchedCardEntry} 
                             handleClick={() => handelEmojiClick(emo.name, index)}
