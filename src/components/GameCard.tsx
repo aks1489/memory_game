@@ -1,13 +1,24 @@
 import { GameCardProps} from '../Interface'
 import EmojiButton from './EmojiButton'
+import { decodeEntity } from 'html-entities'
 export default function GameCard({emojiData, handelEmojiClick, selectedCards, matchedCards}: GameCardProps) {
 
     const handleEmoji = emojiData.map((emo, index) => {
+        const selectedCardEntry = selectedCards.find(emoji => emoji.index === index )
+        const matchedCardEntry = matchedCards.find(emoji => emoji.index === index )
+
         return (
                 <li 
-                    key={index} 
+                    key={index}
                     className="emoji_holder col-auto p-1 d-flex justify-content-center align-items-center">
-                        <EmojiButton content={emo} index={index} style={"btn btn-light border-3 emo"} handelClick={handelEmojiClick}/>
+                        <EmojiButton 
+                            content={decodeEntity(emo.htmlCode[0])} 
+                            index={index} 
+                            style={"btn btn-light border-3 emo"} 
+                            selectedCard={selectedCardEntry} 
+                            matchedCard={matchedCardEntry} 
+                            handleClick={() => handelEmojiClick(emo.name, index)}
+                        />
                 </li>
                 )
     })
