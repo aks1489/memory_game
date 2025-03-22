@@ -12,6 +12,8 @@ export type IRandomNumber = number[]
 export interface GameCardProps {
     handelEmojiClick: (name: string, index: number) => void,
     emojiData: EmoData[],
+    selectedCards: ISelectedCards,
+    matchedCards: ISelectedCards
 }
 export interface GameWrapperButton {
     children: string,
