@@ -99,7 +99,7 @@ export default function GameBody() {
     return(
         <div className="game_body m-0 bg-info-subtle d-flex flex-column align-items-center justify-content-center p-1">
             <h1 className="m-3 p-2 border-2 rounded text-white bg-success">Memory Game</h1>
-            {gameOn && <GameCard handelEmojiClick={clickView} emojiData={emojiData} />}
+            {gameOn && <GameCard handelEmojiClick={clickView} emojiData={emojiData} selectedCards={selectedCards} matchedCards={matchedCards} />}
             {!gameOn && <Wrapper handleSubmit={triggerGameStatus}/>}
         </div>
     )
