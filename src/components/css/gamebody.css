@@ -6,6 +6,29 @@
     list-style: none;
 }
 
+.animation {
+    transform: rotateY(180deg);
+    transition: .6s;
+    transform-style: preserve-3d;
+}
+
+.block_pointer{
+    cursor: not-allowed;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.animated-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff5733;
+    text-align: center;
+    animation: bounce 1s infinite;
+}
+
 .emo{
     font-size: 4.5rem;
 }
