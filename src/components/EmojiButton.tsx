@@ -4,7 +4,7 @@ export default function EmojiButton({content, handleClick, selectedCard, matched
     return(
         <button 
             type="button"
-            onClick={handleClick}
+            onClick={selectedCard ? null : handleClick}
             disabled={matchedCard}
             className={`btn ${cardStyle} border-3 emo`}>
                 {buttonContent}

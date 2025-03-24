@@ -87,11 +87,11 @@ export default function GameBody() {
 
     function clickView(name: string,index :number) {
         // setSelectedCards([{name,index}])
-        const selectedCardEntry = selectedCards.find(emoji => emoji.index === index)
+        
 
-        if(!selectedCardEntry && selectedCards.length < 2) {
+        if(selectedCards.length < 2) {
             setSelectedCards(prvSelectedCards => [...prvSelectedCards, {name,index}])
-        } else if(!selectedCardEntry && selectedCards.length === 2){
+        } else if(selectedCards.length === 2){
             setSelectedCards([{name,index}])
         }
         console.log(selectedCards)
