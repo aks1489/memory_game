@@ -12,7 +12,7 @@ export default function GameOver() {
         <div className="container bg-success flex-column d-flex align-items-center p-2 rounded mb-2" ref={divref} tabIndex={-1}>
             <div className="row justify-content-center mt-5">
                 <div className="col text-center">
-                    <h1 className="text-white">You've matched all the memory cards!🎉</h1>
+                    <h1 className="text-white animated-text">You've matched all the memory cards!🎉</h1>
                 </div>
             </div>
             <div className="row justify-content-center mt-3">
