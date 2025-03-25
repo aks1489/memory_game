@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 import Wrapper from './Wrapper';
 import {gameOnOff, Ie, EmoData, IRandomNumber, ISelectedCards, } from '../Interface';
 import GameOver from './GameOver';
+import GameStatus from './GameStatus';
 
 export default function GameBody() {
 
@@ -12,6 +13,7 @@ export default function GameBody() {
     const [selectedCards, setSelectedCards] = useState<ISelectedCards >([])
     const [matchedCards, setMatchedCards] = useState<ISelectedCards>([])
     const [isGameOver, setIsGameOver] = useState<boolean>(false)
+    const [allCardsMatched, setAllCardsMatched] = useState<boolean>(false)
       
     useEffect(() => {
         if(selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -22,6 +24,12 @@ export default function GameBody() {
     useEffect(() => {
         if(emojiData.length && matchedCards.length === emojiData.length) {
             setIsGameOver(true)
+        }
+    },[matchedCards])
+
+    useEffect(() => {
+        if(selectedCards.length && matchedCards.length === emojiData.length) {
+            setAllCardsMatched(true)
         }
     },[matchedCards])
 
@@ -100,7 +108,8 @@ export default function GameBody() {
     return(
         <div className="game_body m-0 bg-info-subtle d-flex flex-column align-items-center justify-content-center p-1">
             <h1 className="m-3 p-2 border-2 rounded text-white bg-success">Memory Game</h1>
-            <GameOver />
+            {isGameOver && <GameOver />}
+            {gameOn && !allCardsMatched === true && <GameStatus/>}
             {gameOn && <GameCard handelEmojiClick={clickView} emojiData={emojiData} selectedCards={selectedCards} matchedCards={matchedCards} />}
             {!gameOn && <Wrapper handleSubmit={triggerGameStatus}/>}
         </div>
